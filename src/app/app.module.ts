@@ -5,7 +5,7 @@ import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
-
+import {BookState} from './states/book.state';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,7 +29,7 @@ import { FormComponent } from './form/form.component';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    NgxsModule.forRoot(),
+    NgxsModule.forRoot([BookState]),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
     HttpClientModule,

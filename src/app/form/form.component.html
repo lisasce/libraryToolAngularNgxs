@@ -11,6 +11,7 @@
           </div>
         </div>
       </div>
+
       <div class="form-group">
         <label class="col-md-4">Author</label>
         <input type="text" class="form-control" formControlName="bookAuthor" #bookAuthor/>
@@ -21,6 +22,7 @@
           </div>
         </div>
       </div>
+
       <div class="form-group">
         <label class="col-md-4">Category</label>
         <input type="text" class="form-control" formControlName="bookCategory" #bookCategory/>
@@ -31,19 +33,16 @@
           </div>
         </div>
       </div>
+
       <div class="form-group">
-        <label class="col-md-4">Finished</label>
-        <input type="text" class="form-control" formControlName="bookCategory" #bookCategory/>
-        <div *ngIf="bookForm.controls['bookCategory'].invalid && (bookForm.controls['bookCategory'].dirty || bookForm.controls['bookCategory'].touched)"
-             class="alert alert-danger">
-          <div *ngIf="bookForm.controls['bookCategory'].errors.required">
-            Finished status is required.
-          </div>
+        <label class="col-md-4">Reading progress</label>
+        <select class="form-control" formControlName="finished" #finished>
+          <option value="Done">Done</option>
+          <option value="In progress">In progress</option>
+          <option value="On hold">On hold</option>
+          <option value="To read">To read</option>
+        </select>
         </div>
-      </div>
-
-<!--here drop-down for read yes no in progress-->
-
 
       <div class="form-group">
         <button type="submit"

@@ -16,7 +16,7 @@ export class BookStateModel {
       bookTitle: "sample book",
       bookAuthor: "sample author",
       bookCategory: "thriller",
-      finished: "no"
+      finished: "To read"
     }],
     selectedBook: null
   }
@@ -59,8 +59,8 @@ export class BookState {
   updateBook({getState, setState}: StateContext<BookStateModel>, {payload, bookId}: UpdateBook) {
     const state = getState();
     const bookList = [...state.books];
-    const todoIndex = state.books.findIndex(item => item.bookId === bookId);
-    bookList[todoIndex] = payload;
+    const bookIndex = state.books.findIndex(item => item.bookId === bookId);
+    bookList[bookIndex] = payload;
     setState({
         ...state,
         books: bookList,

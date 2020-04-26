@@ -30,7 +30,7 @@ export class FormComponent implements OnInit, OnDestroy  {
             bookTitle: book.bookTitle,
             bookAuthor: book.bookAuthor,
             bookCategory: book.bookCategory,
-            bookFinished: book.finished
+            finished: book.finished
           });
           this.editBook = true;
         } else {
@@ -46,7 +46,7 @@ export class FormComponent implements OnInit, OnDestroy  {
       bookTitle: ['', Validators.required],
       bookAuthor: ['', Validators.required],
       bookCategory: ['', Validators.required],
-      bookFinished: ['', Validators.required]
+      finished: ['To read', Validators.required]
     });
   }
 

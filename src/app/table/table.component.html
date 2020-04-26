@@ -1,4 +1,4 @@
-<div class="container mx-auto">
+<div *ngIf="books" class="container mx-auto">
 <table class="table table-hover table-responsive-sm">
   <thead class="bg-dark text-white">
   <tr>
@@ -7,27 +7,22 @@
     <th scope="col">Author</th>
     <th scope="col">Category</th>
     <th scope="col">finished reading</th>
-    <th scope="col"></th>
-    <th scope="col"></th>
+    <th scope="col">Edit</th>
+    <th scope="col">Delete</th>
   </tr>
   </thead>
   <tbody>
-  <tr>
-    <th scope="row">1</th>
-    <td>bookTitle</td>
-    <td>authorName</td>
-    <td>cat</td>
-    <td>yes</td>
-    <td><button>edit</button></td>
-    <td><button>del</button></td>
+  <tr *ngFor="let book of books | async; index as i;">
+<!--    async to be able to do somthg else in the meantime-->
+    <th scope="row">{{i}}</th>
+    <td>{{book.bookTitle}}</td>
+    <td>{{book.bookAuthor}}</td>
+    <td>{{book.bookCategory}}</td>
+    <td>{{book.finished}}</td>
+    <td><button class="btn btn-dark" (click)="editBook(book)">edit</button></td>
+    <td><button class="btn btn-danger" (click)="deleteBook(book.bookId)">delete</button></td>
   </tr>
-  <tr>
-    <th scope="row">2</th>
-    <td>bookTitle</td>
-    <td>authorName</td>
-    <td>cat</td>
-    <td>no</td>
-  </tr>
+
 
   </tbody>
 </table>

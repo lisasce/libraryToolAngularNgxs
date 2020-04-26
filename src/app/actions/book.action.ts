@@ -7,21 +7,21 @@ export class AddBook {
   }
 }
 
-export class GetBook {
+export class GetBooks {
   static readonly type = '[Book] Get';
 }
 
 export class UpdateBook {
   static readonly type = '[Book] Update';
 
-  constructor(public payload: Book, public BookId: number) {
+  constructor(public payload: Book, public bookId: number) {
   }
 }
 
 export class DeleteBook {
   static readonly type = '[Book] Delete';
 
-  constructor(public BookId: number) {
+  constructor(public bookId: number) {
   }
 }
 
@@ -30,4 +30,8 @@ export class SetSelectedBook {
 
   constructor(public payload: Book) {
   }
+}
+
+export class FetchAllBook {
+  static readonly type = '[Book] Fetch All';
 }

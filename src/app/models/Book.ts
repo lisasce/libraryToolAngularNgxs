@@ -3,5 +3,5 @@ export interface Book {
   bookTitle: string;
   bookAuthor: string;
   bookCategory: string;
-  finished: boolean;
+  finished: string;
 }

@@ -1,11 +1,12 @@
 import {State, Action, StateContext, Selector} from '@ngxs/store';
 import {Book} from '../models/Book';
-import {AddBook, DeleteBook, GetBooks, SetSelectedBook, UpdateBook } from '../actions/book.action';
+import {AddBook, DeleteBook, GetBooks, SetSelectedBook, UpdateBook, SetCategory } from '../actions/book.action';
 import {tap} from 'rxjs/operators';
 
 export class BookStateModel {
   books: Book[];
   selectedBook: Book;
+  category: string
 }
 
 @State<BookStateModel>({
@@ -18,7 +19,8 @@ export class BookStateModel {
       bookCategory: "thriller",
       finished: "To read"
     }],
-    selectedBook: null
+    selectedBook: null,
+    category: null
   }
 })
 export class BookState {
@@ -39,9 +41,13 @@ export class BookState {
   @Action(GetBooks)
     getBooks({getState, setState}: StateContext<BookStateModel>) {
         const state = getState();
+        let filteredArray = state.books;
+        if(state.category !== null) {
+          filteredArray = filteredArray.filter(book => book.bookCategory === state.category);
+        }
         setState({
             ...state,
-            books: state.books,
+            books: filteredArray
        });
     }
 
@@ -65,6 +71,14 @@ export class BookState {
         ...state,
         books: bookList,
     });
+  }
+
+  @Action(SetCategory)
+  setCategory({getState, setState}: StateContext<BookStateModel>, {category}: SetCategory){
+     setState({
+       ...getState(),
+       category: category
+     });
   }
 
   @Action(DeleteBook)

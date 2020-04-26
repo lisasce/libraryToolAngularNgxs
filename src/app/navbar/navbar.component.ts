@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {SetCategory} from '../actions/book.action';
+import {Store} from '@ngxs/store';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
+  }
+
+  setCategory(category: string) {
+  	this.store.dispatch(new SetCategory(category));
   }
 
 }

@@ -32,6 +32,8 @@ export class SetSelectedBook {
   }
 }
 
-export class FetchAllBook {
-  static readonly type = '[Book] Fetch All';
+export class SetCategory {
+  static readonly type = '[Category] Set';
+
+  constructor(public category: string){}
 }

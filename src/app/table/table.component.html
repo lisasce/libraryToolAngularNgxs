@@ -14,7 +14,7 @@
   <tbody>
   <tr *ngFor="let book of books | async; index as i;">
 <!--    async to be able to do somthg else in the meantime-->
-    <th scope="row">{{i}}</th>
+    <th scope="row">{{i+1}}</th>
     <td>{{book.bookTitle}}</td>
     <td>{{book.bookAuthor}}</td>
     <td>{{book.bookCategory}}</td>

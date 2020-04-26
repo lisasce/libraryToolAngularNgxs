@@ -1,7 +1,6 @@
 import {State, Action, StateContext, Selector} from '@ngxs/store';
 import {Book} from '../models/Book';
-import {AddBook, DeleteBook, GetBooks, SetSelectedBook, UpdateBook, FetchAllBook } from '../actions/book.action';
-import {BookService} from '../book.service';
+import {AddBook, DeleteBook, GetBooks, SetSelectedBook, UpdateBook } from '../actions/book.action';
 import {tap} from 'rxjs/operators';
 
 export class BookStateModel {
@@ -12,13 +11,19 @@ export class BookStateModel {
 @State<BookStateModel>({
   name: 'books',
   defaults: {
-    books: [],
+    books: [{
+      bookId: 1,
+      bookTitle: "sample book",
+      bookAuthor: "sample author",
+      bookCategory: "thriller",
+      finished: "no"
+    }],
     selectedBook: null
   }
 })
 export class BookState {
 
-  constructor(private bookService: BookService) {
+  constructor() {
   }
 
   @Selector()
@@ -32,55 +37,48 @@ export class BookState {
   }
 
   @Action(GetBooks)
-  getTodos({getState, setState}: StateContext<BookStateModel>) {
-    return this.bookService.fetchBooks().pipe(tap((result) => {
-      const state = getState();
-      setState({
-        ...state,
-        books: result,
-      });
-    }));
-  }
+    getBooks({getState, setState}: StateContext<BookStateModel>) {
+        const state = getState();
+        setState({
+            ...state,
+            books: state.books,
+       });
+    }
 
   @Action(AddBook)
-  addTodo({getState, patchState}: StateContext<BookStateModel>, {payload}: AddBook) {
-    return this.bookService.addBook(payload).pipe(tap((result) => {
-      const state = getState();
-      patchState({
-        books: [...state.books, result]
-      });
-    }));
+  addBook({getState, patchState}: StateContext<BookStateModel>, {payload}: AddBook) {
+    const state = getState();
+    let currentMaxBookId = Math.max.apply(Math, state.books.map(function(book) { return book.bookId; }))
+    payload.bookId = currentMaxBookId + 1;
+    patchState({
+      books: [...state.books, payload]
+    });
   }
 
   @Action(UpdateBook)
-  updateTodo({getState, setState}: StateContext<BookStateModel>, {payload, bookId}: UpdateBook) {
-    return this.bookService.updateBook(payload, bookId).pipe(tap((result) => {
-      const state = getState();
-      const bookList = [...state.books];
-      const bookIndex = bookList.findIndex(item => item.bookId === bookId);
-      bookList[bookIndex] = result;
-      setState({
+  updateBook({getState, setState}: StateContext<BookStateModel>, {payload, bookId}: UpdateBook) {
+    const state = getState();
+    const bookList = [...state.books];
+    const todoIndex = state.books.findIndex(item => item.bookId === bookId);
+    bookList[todoIndex] = payload;
+    setState({
         ...state,
         books: bookList,
-      });
-    }));
+    });
   }
 
-
   @Action(DeleteBook)
-  deleteTodo({getState, setState}: StateContext<BookStateModel>, {bookId}: DeleteBook) {
-    return this.bookService.deleteBook(bookId).pipe(tap(() => {
-      const state = getState();
-      const filteredArray = state.books.filter(item => item.bookId !== bookId);
-      setState({
-        ...state,
-        books: filteredArray,
-      });
-    }));
+  deleteBook({getState, setState}: StateContext<BookStateModel>, {bookId}: DeleteBook) {
+    const state = getState();
+    let filteredArray = state.books.filter(book => book.bookId !== bookId);
+    setState({
+      ...state,
+      books: filteredArray
+    })
   }
 
   @Action(SetSelectedBook)
-  setSelectedTodoId({getState, setState}: StateContext<BookStateModel>, {payload}: SetSelectedBook) {
+  setSelectedBookId({getState, setState}: StateContext<BookStateModel>, {payload}: SetSelectedBook) {
     const state = getState();
     setState({
       ...state,

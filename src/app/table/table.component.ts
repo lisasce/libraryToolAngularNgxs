@@ -17,10 +17,10 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(new GetBooks());
   }
-deleteBook(bookId: number) {
-  this.store.dispatch(new DeleteBook(bookId));
-}
-editBook(payload: Book) {
+  deleteBook(bookId: number) {
+    this.store.dispatch(new DeleteBook(bookId));
+  }
+  editBook(payload: Book) {
     this.store.dispatch(new SetSelectedBook(payload));
   }
 }

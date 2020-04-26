@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "myLibAngular"
+  "defaultProject": "myLibAngular",
+  "cli": {
+    "analytics": false
+  }
 }

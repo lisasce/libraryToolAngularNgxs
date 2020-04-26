@@ -53,13 +53,13 @@ export class FormComponent implements OnInit, OnDestroy  {
   onSubmit() {
     if (this.editBook) {
       this.formSubscription.add(
-        this.store.dispatch(new UpdateBook(this.bookForm.value, this.bookForm.value.id)).subscribe(() => {
+        this.store.dispatch(new UpdateBook(this.bookForm.value, this.bookForm.value.bookId)).subscribe(() => {
           this.clearForm();
         })
       );
     } else {
       this.formSubscription.add(
-        this.formSubscription = this.store.dispatch(new AddBook(this.bookForm.value)).subscribe(() => {
+        this.store.dispatch(new AddBook(this.bookForm.value)).subscribe(() => {
           this.clearForm();
         })
       );

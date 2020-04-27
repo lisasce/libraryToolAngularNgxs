@@ -16,7 +16,7 @@ export class BookStateModel {
       bookId: 1,
       bookTitle: "sample book",
       bookAuthor: "sample author",
-      bookCategory: "thriller",
+      bookCategory: "others",
       finished: "To read"
     }],
     selectedBook: null,

@@ -25,13 +25,16 @@
 
       <div class="form-group">
         <label class="col-md-4">Category</label>
-        <input type="text" class="form-control" formControlName="bookCategory" #bookCategory/>
-        <div *ngIf="bookForm.controls['bookCategory'].invalid && (bookForm.controls['bookCategory'].dirty || bookForm.controls['bookCategory'].touched)"
-             class="alert alert-danger">
-          <div *ngIf="bookForm.controls['bookCategory'].errors.required">
-            Category is required.
-          </div>
-        </div>
+          <select formControlName="bookCategory" class="form-control" #bookCategory>
+            <option value="novel">Historical novel</option>
+            <option value="horror">Horror</option>
+            <option value="love">Love stories</option>
+            <option value="classic">Classic litterature</option>
+            <option value="fantasy">Fantasy</option>
+            <option value="biography">Biography</option>
+            <option value="languages">Foreign languages</option>
+            <option value="others">Others</option>
+          </select>
       </div>
 
       <div class="form-group">

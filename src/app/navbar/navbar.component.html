@@ -15,10 +15,15 @@
           Categories
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <button class="dropdown-item" (click)="setCategory('novel')">Historical novel</button>
-          <button class="dropdown-item" (click)="setCategory('horror')">Horror</button>
-          <button class="dropdown-item" (click)="setCategory('love')">Love stories</button>
-          <button class="dropdown-item" (click)="setCategory('classic')">Classic litterature</button>
+          <button class="dropdown-item" value='all' (click)="setCategory()">All categories</button>          
+          <button class="dropdown-item" value='novel' (click)="setCategory()">Historical novel</button>
+          <button class="dropdown-item" value='horror' (click)="setCategory()">Horror</button>
+          <button class="dropdown-item" value='love' (click)="setCategory()">Love stories</button>
+          <button class="dropdown-item" value='classic' (click)="setCategory()">Classic litterature</button>
+          <button class="dropdown-item" value='fantasy' (click)="setCategory()">Fantasy</button>
+          <button class="dropdown-item" value='biography' (click)="setCategory()">Biography</button>
+          <button class="dropdown-item" value='languages' (click)="setCategory()">Foreign languages</button>
+          <button class="dropdown-item" value='others' (click)="setCategory()">Others</button>
         </div>
       </li>
     </ul>

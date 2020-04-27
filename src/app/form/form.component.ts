@@ -58,6 +58,7 @@ export class FormComponent implements OnInit, OnDestroy  {
         })
       );
     } else {
+      $("tbody tr").show();
       this.formSubscription.add(
         this.store.dispatch(new AddBook(this.bookForm.value)).subscribe(() => {
           this.clearForm();

@@ -12,7 +12,7 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let book of books | async; index as i;">
+  <tr *ngFor="let book of books | async; index as i" attr.data-cat="{{book.bookCategory}}">
 <!--    async to be able to do somthg else in the meantime-->
     <th scope="row">{{i+1}}</th>
     <td>{{book.bookTitle}}</td>
